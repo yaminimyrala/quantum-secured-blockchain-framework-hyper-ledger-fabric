@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumShield-BC Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="cyber-header">
+        <h1>QUANTUMSHIELD-BC</h1>
+        <p class="subtitle">Post-Quantum Data Security Framework</p>
+    </header>
+
+    <div class="dashboard-grid">
+        <!-- Transaction Control Center -->
+        <section class="panel glass-panel">
+            <h2><span class="icon">⚡</span> Transaction Control Center</h2>
+            <form id="tx-form">
+                <div class="form-group">
+                    <label>Sender</label>
+                    <select id="sender" required>
+                        <option value="Alice">Alice (Q-Node A)</option>
+                        <option value="Bob">Bob (Q-Node B)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Receiver</label>
+                    <select id="receiver" required>
+                        <option value="Bob">Bob (Q-Node B)</option>
+                        <option value="Alice">Alice (Q-Node A)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount (Q-Tokens)</label>
+                    <input type="number" id="amount" min="1" value="10" required>
+                </div>
+                <button type="submit" class="cyber-button">Initiate Secure Transfer</button>
+            </form>
+            <div id="tx-status" class="status-box"></div>
+        </section>
+
+        <!-- Execution Tracker & QKD -->
+        <section class="panel glass-panel">
+            <h2><span class="icon">🔒</span> Quantum Execution Tracker</h2>
+            <div class="tracker-steps">
+                <div class="step" id="step-1">1. User Transaction <button class="cyber-button step-exec-btn" id="exec-btn-1" onclick="executeStep(1)">Execute</button></div>
+                <div class="step" id="step-2">2. PQC Signature (CRYSTALS) <button class="cyber-button step-exec-btn" id="exec-btn-2" disabled onclick="executeStep(2)">Execute</button></div>
+                <div class="step" id="step-3">3. BB84 QKD Key Exchange <button class="cyber-button step-exec-btn" id="exec-btn-3" disabled onclick="executeStep(3)">Execute</button></div>
+                <div class="step" id="step-4">4. QRNG Leader Selection <button class="cyber-button step-exec-btn" id="exec-btn-4" disabled onclick="executeStep(4)">Execute</button></div>
+                <div class="step" id="step-5">5. Q-BFT Consensus <button class="cyber-button step-exec-btn" id="exec-btn-5" disabled onclick="executeStep(5)">Execute</button></div>
+                <div class="step" id="step-6">6. Commit to Hyperledger Fabric <button class="cyber-button step-exec-btn" id="exec-btn-6" disabled onclick="executeStep(6)">Execute</button></div>
+                <div class="step" id="step-7">7. Verify Transaction <button class="cyber-button step-exec-btn" id="exec-btn-7" disabled onclick="executeStep(7)">Execute</button></div>
+            </div>
+            
+            <div class="qkd-visualizer">
+                <h3>BB84 Exchange Log</h3>
+                <pre id="qkd-log" class="terminal-output">Waiting for transaction...</pre>
+            </div>
+        </section>
+
+        <!-- Validator Consensus Dashboard -->
+        <section class="panel glass-panel">
+            <h2><span class="icon">🌐</span> Validator Consensus Dashboard</h2>
+            <div class="validators-grid" id="validators-grid">
+                <!-- Validators injected via JS -->
+            </div>
+            <button id="mine-btn" class="cyber-button secondary" disabled>Trigger Q-BFT Consensus</button>
+            <div id="mine-status" class="status-box"></div>
+        </section>
+
+        <!-- System Health & Analytics -->
+        <section class="panel glass-panel">
+            <h2><span class="icon">📊</span> System Health & Analytics</h2>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <h4>PQC Engine</h4>
+                    <span class="value success">ONLINE (Dilithium)</span>
+                </div>
+                <div class="metric">
+                    <h4>QKD Channel</h4>
+                    <span class="value success">SECURE (BB84)</span>
+                </div>
+                <div class="metric">
+                    <h4>QRNG Entropy</h4>
+                    <span class="value warning" id="entropy-val">N/A</span>
+                </div>
+                <div class="metric">
+                    <h4>Network State</h4>
+                    <span class="value info" id="network-state">IDLE</span>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;"><span class="icon">⛓️</span> Hyperledger Fabric Gateway</h3>
+            <div class="metrics-grid">
+                <div class="metric">
+                    <h4>Fabric Status</h4>
+                    <span class="value warning" id="fabric-status">Checking...</span>
+                </div>
+                <div class="metric">
+                    <h4>Channel</h4>
+                    <span class="value info" id="fabric-channel">N/A</span>
+                </div>
+                <div class="metric">
+                    <h4>Chaincode</h4>
+                    <span class="value info" id="fabric-chaincode">N/A</span>
+                </div>
+                <div class="metric">
+                    <h4>Latest Fabric TX</h4>
+                    <span class="value info" id="fabric-latest-tx" style="font-size: 0.8rem; word-break: break-all;">None</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Block Explorer -->
+        <section class="panel glass-panel full-width">
+            <h2><span class="icon">⛓️</span> Quantum Ledger Explorer</h2>
+            <div class="blockchain-container" id="blockchain-explorer">
+                <!-- Blocks injected via JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="/static/js/dashboard.js"></script>
+</body>
+</html>
